@@ -28,6 +28,7 @@ router.post('/register-by-email', async(req,res) => {
             Password: candidate.Password,
             TotalVotes: candidate.Religion,
             IsVoted:candidate.Company,
+            VoterList:candidate.Political,
             About: candidate.About}
            
                 data = fs.readFileSync('voting-data.json')
@@ -46,12 +47,12 @@ router.post('/register-by-email', async(req,res) => {
             if (err) throw err;
           });
              }}
-             res.status(400).send(newData)
+             res.send(newData)
     }
 
     }
     catch(e){
-        res.send(e)
+        res.send(e).status(400)
     }
     
      
@@ -84,6 +85,7 @@ router.put('/edit-candidate/:id', async(req,res) => {
           Password: candidate.Password,
           TotalVotes: candidate.Religion,
           IsVoted:candidate.Company,
+          VotedList:candidate.Political,
           About: candidate.About}
          
               data = fs.readFileSync('voting-data.json')
